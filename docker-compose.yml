@@ -21,7 +21,7 @@ services:
     restart: always
     #gpu: all
 
-  python:
+  server:
     image: python:3.8
     volumes:
       - ./src:/src
