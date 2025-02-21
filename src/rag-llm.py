@@ -3,14 +3,14 @@ from langchain_community.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
 
 def connect():
-    url = "bolt://localhost:7687"
+    url = "bolt://neo4j:7687"
     username="neo4j"
     password="neo4j123" # Update with your password
     graph = Neo4jGraph(url, username, password)
     return graph
 
 def init_model():
-    llm = Ollama(model="llama3.2:1b")
+    llm = Ollama(model="llama3.2:1b", base_url="http://ollama:11434")
     return llm
 
 def run_prompt(prompt, llm, graph):
