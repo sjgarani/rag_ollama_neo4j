@@ -10,7 +10,7 @@ def connect():
     return graph
 
 def init_model():
-    llm = Ollama(model="llama3.2:1b", base_url="http://ollama:11434")
+    llm = Ollama(model="llama3.2", base_url="http://ollama:11434")
     return llm
 
 def run_prompt(prompt, llm, graph):
