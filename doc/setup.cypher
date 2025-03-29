@@ -1,3 +1,5 @@
+MATCH (n) DETACH DELETE n
+
 CREATE (person1:Person {name: "Ryan", role: "Project Owner"})
 CREATE (person2:Person {name: "Dale", role: "Project Editor"})
 CREATE (person3:Person {name: "Dan", role: "Project Editor"})
@@ -18,8 +20,8 @@ CREATE (service2)-[:DEPLOYED_IN]->(location1)
 CREATE (service3)-[:DEPLOYED_IN]->(location1)
 CREATE (service4)-[:DEPLOYED_IN]->(location2)
 
-CREATE (project1:PROJECT {name: "Super Awesome Project", id: "super-awesome-project"})
-CREATE (project2:PROJECT {name: "Another Super Awesome Project", id: "another-super-awesome-project"})
+CREATE (project1:Project {name: "Super Awesome Project", id: "super-awesome-project"})
+CREATE (project2:Project {name: "Another Super Awesome Project", id: "another-super-awesome-project"})
 
 CREATE (person1)-[:MANAGES]->(project1)
 CREATE (person2)-[:EDITOR_OF]->(project1)

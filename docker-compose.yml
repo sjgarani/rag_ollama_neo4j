@@ -1,17 +1,4 @@
 services:
-  neo4j:
-    image: neo4j:2025.01.0
-    environment:
-        - NEO4J_AUTH=neo4j/neo4j123
-        - NEO4J_apoc_export_file_enabled=true
-        - NEO4J_apoc_import_file_enabled=true
-        - NEO4J_apoc_import_file_use__neo4j__config=true
-        - NEO4J_PLUGINS=["apoc"]
-    ports:
-      - "7474:7474"
-      - "7687:7687"
-    restart: always
-  
   ollama:
     image: ollama/ollama
     volumes:
@@ -22,9 +9,11 @@ services:
     #gpu: all
 
   server:
-    image: python:3.8
+    build:
+      context: .
+      dockerfile: Dockerfile.python
     volumes:
-      - ./src:/src
+      - .:/src
     working_dir: /src
     command: tail -f /dev/null
     restart: always

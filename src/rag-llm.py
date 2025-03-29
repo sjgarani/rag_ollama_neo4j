@@ -1,16 +1,13 @@
-from langchain_community.llms import Ollama
-from langchain_community.graphs import Neo4jGraph
-from langchain.chains import GraphCypherQAChain
+from dotenv import load_dotenv
+from langchain_ollama import OllamaLLM
+from langchain_neo4j import Neo4jGraph, GraphCypherQAChain
 
-def connect():
-    url = "bolt://neo4j:7687"
-    username="neo4j"
-    password="neo4j123" # Update with your password
-    graph = Neo4jGraph(url, username, password)
+def init_graph():
+    graph = Neo4jGraph()
     return graph
 
 def init_model():
-    llm = Ollama(model="llama3.2", base_url="http://ollama:11434")
+    llm = OllamaLLM(model="llama3.2", base_url="http://ollama:11434")
     return llm
 
 def run_prompt(prompt, llm, graph):
@@ -21,7 +18,8 @@ def run_prompt(prompt, llm, graph):
     return result['result']
 
 def main():
-    graph = connect()
+    load_dotenv()
+    graph = init_graph()
     llm = init_model()
     prompt = "Show me everyone that owns a Project?"
     result = run_prompt(prompt, llm, graph)

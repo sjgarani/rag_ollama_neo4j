@@ -1,0 +1,13 @@
+# Dev environment
+pip
+autopep8
+python-dotenv
+
+# App
+numpy
+langchain_core
+langchain-neo4j
+langchain_ollama
+langgraph
+langchain-experimental
+neo4j
